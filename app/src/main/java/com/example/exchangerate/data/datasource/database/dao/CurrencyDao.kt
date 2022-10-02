@@ -1,12 +1,13 @@
-package com.example.exchangerate.database.dao
+package com.example.exchangerate.data.datasource.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.exchangerate.database.model.CurrencyNameEntity
-import com.example.exchangerate.database.model.CurrencyRateEntity
+import com.example.exchangerate.data.datasource.database.model.CurrencyNameEntity
+import com.example.exchangerate.data.datasource.database.model.CurrencyRateEntity
 import com.example.exchangerate.model.Currency
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CurrencyDao {
@@ -24,9 +25,6 @@ interface CurrencyDao {
                 "WHERE currencies_name_table.id = currencies_rate_table.id"
     )
     suspend fun getAllCurrencies(): List<Currency>
-
-    @Query("SELECT * FROM currencies_name_table")
-    suspend fun test()
 
     @Query("DELETE FROM currencies_name_table")
     suspend fun deleteCurrenciesNameTable()

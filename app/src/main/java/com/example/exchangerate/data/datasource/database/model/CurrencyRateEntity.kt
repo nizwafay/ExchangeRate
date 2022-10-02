@@ -1,4 +1,4 @@
-package com.example.exchangerate.database.model
+package com.example.exchangerate.data.datasource.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
