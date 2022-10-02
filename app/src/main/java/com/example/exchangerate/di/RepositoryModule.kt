@@ -1,6 +1,8 @@
 package com.example.exchangerate.di
 
+import com.example.exchangerate.data.datasource.database.CurrencyDatabase
 import com.example.exchangerate.data.datasource.database.dao.CurrencyDao
+import com.example.exchangerate.data.datasource.network.retrofit.ExchangeRateRetrofit
 import com.example.exchangerate.data.repository.ExchangeRateRepository
 import dagger.Module
 import dagger.Provides
@@ -13,7 +15,10 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Singleton
     @Provides
-    fun provideUserRepository(currencyDao: CurrencyDao): ExchangeRateRepository {
-        return ExchangeRateRepository(currencyDao = currencyDao)
+    fun provideUserRepository(exchangeRateRetrofit: ExchangeRateRetrofit, currencyDao: CurrencyDao): ExchangeRateRepository {
+        return ExchangeRateRepository(
+            exchangeRateRetrofit = exchangeRateRetrofit,
+            currencyDao = currencyDao
+        )
     }
 }

@@ -18,13 +18,13 @@ interface CurrencyDao {
     suspend fun insertAllCurrenciesRate(currenciesRate: List<CurrencyRateEntity>)
 
     @Query(
-        "SELECT currencies_name_table.id AS id," +
-                "currencies_name_table.name AS name," +
-                "currencies_rate_table.rateInUsd AS rateInUsd" +
-                "FROM currencies_name_table, currencies_rate_table" +
+        "SELECT currencies_name_table.id AS id, " +
+                "currencies_name_table.name AS name, " +
+                "currencies_rate_table.rate_in_usd AS rateInUsd " +
+                "FROM currencies_name_table, currencies_rate_table " +
                 "WHERE currencies_name_table.id = currencies_rate_table.id"
     )
-    suspend fun getAllCurrencies(): List<Currency>
+    fun getAllCurrencies(): Flow<List<Currency>>
 
     @Query("DELETE FROM currencies_name_table")
     suspend fun deleteCurrenciesNameTable()

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.exchangerate.data.repository.ExchangeRateRepository
 import com.example.exchangerate.model.Currency
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,17 +15,25 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val exchangeRateRepository: ExchangeRateRepository
 ) : ViewModel() {
-    private val _data = MutableLiveData<List<Currency>>()
-    val data: LiveData<List<Currency>>
-        get() = _data
 
     init {
+        syncData()
         getData()
     }
 
-    fun getData() {
+    fun syncData() {
         viewModelScope.launch {
-            _data.value = exchangeRateRepository.getExchangeRates()
+            exchangeRateRepository.syncData()
         }
     }
+
+    fun getData(): Flow<List<Currency>> {
+        return exchangeRateRepository.getExchangeRates()
+    }
+
+//    fun getDbData() {
+//        viewModelScope.launch {
+//            exchangeRateRepository.getExchangeRates()
+//        }
+//    }
 }

@@ -15,7 +15,13 @@ import javax.inject.Singleton
 object RoomModule {
     @Singleton
     @Provides
-    fun provideCurrencyDao(@ApplicationContext context: Context): CurrencyDao {
-        return CurrencyDatabase.getInstance(context).currencyDao()
+    fun provideCurrencyDatabase(@ApplicationContext context: Context): CurrencyDatabase {
+        return CurrencyDatabase.getInstance(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCurrencyDao(currencyDatabase: CurrencyDatabase): CurrencyDao {
+        return currencyDatabase.currencyDao()
     }
 }
