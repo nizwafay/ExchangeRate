@@ -1,5 +1,7 @@
 package com.example.exchangerate.data.repository
 
+import android.util.Log
+import com.example.exchangerate.data.datasource.cache.CurrencyCache
 import com.example.exchangerate.data.datasource.database.dao.CurrencyDao
 import com.example.exchangerate.data.datasource.database.model.CurrencyNameEntity
 import com.example.exchangerate.data.datasource.database.model.CurrencyRateEntity
@@ -13,6 +15,11 @@ class ExchangeRateRepository @Inject constructor(
     private val currencyDao: CurrencyDao
 ) {
     suspend fun syncData() {
+        Log.d("mnf", "kotpref awal: " + CurrencyCache.lastSync)
+        if (CurrencyCache.lastSync != null) {
+            return
+        }
+
         val networkResult = exchangeRateRetrofit.getCurrencies()
 
         currencyDao.deleteCurrenciesNameTable()
@@ -25,6 +32,10 @@ class ExchangeRateRepository @Inject constructor(
         })
 
         val network2Result = exchangeRateRetrofit.getCurrenciesRate()
+
+        Log.d("mnf", "network timestamp: " + network2Result.timestamp.toString())
+        CurrencyCache.lastSync = network2Result.timestamp.toString()
+        Log.d("mnf", "kotpref: " + CurrencyCache.lastSync)
 
         currencyDao.deleteCurrenciesRateTable()
 

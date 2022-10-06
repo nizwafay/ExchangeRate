@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ExchangeRate</string>
+
+    <string name="hint_amount">Enter Amount</string>
 </resources>

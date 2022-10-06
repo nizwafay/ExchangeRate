@@ -31,6 +31,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 ext {
@@ -39,6 +43,7 @@ ext {
     lifecycle_version = "2.6.0-alpha02"
     activity_version = "1.6.0"
     retrofit_version = "2.9.0"
+    kotpref_version = "2.13.1"
     chucker_version = "3.5.2"
 }
 
@@ -64,6 +69,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     implementation("androidx.activity:activity-ktx:$activity_version")
+
+    implementation "com.chibatching.kotpref:kotpref:$kotpref_version"
 
     debugImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chucker_version"

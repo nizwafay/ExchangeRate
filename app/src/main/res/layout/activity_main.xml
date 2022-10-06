@@ -6,13 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="16dp"
+        android:inputType="number"
+        android:hint="@string/hint_amount"
+        app:layout_constraintTop_toTopOf="parent"/>
 
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/dropdown"
+        android:layout_width="100dp"
+        android:completionThreshold="1"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:inputType="textCapCharacters"
+        android:maxLength="3"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/etAmount"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/dropdown"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExchangeRates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/etAmount"/>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

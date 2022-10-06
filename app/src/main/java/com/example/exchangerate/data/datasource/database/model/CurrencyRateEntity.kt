@@ -9,5 +9,5 @@ data class CurrencyRateEntity(
     @PrimaryKey
     val id: String,
     @ColumnInfo(name = "rate_in_usd")
-    val rateInUsd: Float
+    val rateInUsd: Double
 )

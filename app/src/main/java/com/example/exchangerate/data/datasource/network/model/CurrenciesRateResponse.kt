@@ -12,5 +12,5 @@ data class CurrenciesRateResponse(
     @SerializedName("base")
     val base: String = "",
     @SerializedName("rates")
-    val rates: Map<String, Float>
+    val rates: Map<String, Double>
 )
