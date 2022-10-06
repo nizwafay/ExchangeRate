@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding.run {
             etAmount.doOnTextChanged { text, _, _, _ ->
                 vm.onAmountChanged(
-                    if (text.isNullOrEmpty()) 0f else text.toString().toFloat()
+                    if (text.isNullOrEmpty()) 0.0 else text.toString().toDouble()
                 )
             }
             setupExchangeResultRv()

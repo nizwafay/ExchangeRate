@@ -14,7 +14,7 @@ class ExchangeResultAdapter :
         fun bind(currencyExchangeResult: CurrencyExchangeResult) {
             with(currencyExchangeResult) {
                 binding.apply {
-                    tvExchangeResult.text = exchangeResult.toBigDecimal().toPlainString()
+                    tvExchangeResult.text = exchangeResult.toString()
                     tvCurrencyId.text = id
                     tvCurrencyName.text = name
                 }

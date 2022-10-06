@@ -11,17 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/hint_amount"
-        android:inputType="number"
+        android:hint="@string/hint_enter_amount"
+        android:inputType="numberDecimal"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/ddCurrencyList"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:completionThreshold="1"
         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:inputType="textCapCharacters"
+        android:hint="@string/hint_select_base_currency"
         android:maxLength="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etAmount" />

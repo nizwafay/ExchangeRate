@@ -19,7 +19,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val currencyRepository: CurrencyRepository
 ) : ViewModel() {
-    private val amount = MutableStateFlow<Float?>(null)
+    private val amount = MutableStateFlow<Double?>(null)
     private val baseCurrency = MutableStateFlow<Currency?>(null)
 
     val currencyList: Flow<List<Currency>> = currencyRepository.getCurrencyData()
@@ -41,7 +41,7 @@ class MainViewModel @Inject constructor(
         syncData()
     }
 
-    fun onAmountChanged(amount: Float?) {
+    fun onAmountChanged(amount: Double?) {
         this.amount.update { amount }
     }
 
