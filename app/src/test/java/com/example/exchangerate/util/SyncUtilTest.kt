@@ -3,7 +3,6 @@ package com.example.exchangerate.util
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 
-
 class SyncUtilTest {
     @Test
     fun isCurrencyDataAvailableToSync_null_returnTrue() {

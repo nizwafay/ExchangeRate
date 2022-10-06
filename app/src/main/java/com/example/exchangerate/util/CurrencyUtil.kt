@@ -4,11 +4,11 @@ import com.example.exchangerate.model.Currency
 import com.example.exchangerate.ui.adapter.CurrencyExchangeResult
 
 object CurrencyUtil {
-    fun Currency.rateIn(currency: Currency?): CurrencyExchangeResult {
+    fun Currency?.rateIn(currency: Currency): CurrencyExchangeResult {
         return CurrencyExchangeResult(
-            id = id,
-            name = name,
-            exchangeResult = if (currency == null) 0.0 else rateInUsd / currency.rateInUsd
+            id = currency.id,
+            name = currency.name,
+            exchangeResult = if (this == null) 1.0 else currency.rateVsUsd / rateVsUsd
         )
     }
 }

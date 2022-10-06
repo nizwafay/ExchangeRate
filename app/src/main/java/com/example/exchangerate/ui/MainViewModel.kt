@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
     val currencyExchangeResult: Flow<List<CurrencyExchangeResult>> =
         combine(amount, baseCurrency, currencyList) { _amount, _baseCurrency, _currencyList ->
             _currencyList.map {
-                it.rateIn(_baseCurrency)
+                _baseCurrency.rateIn(it)
             }.map {
                 CurrencyExchangeResult(
                     id = it.id,
