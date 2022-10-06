@@ -46,7 +46,7 @@ class CurrencyRepository @Inject constructor(
         currencyDao.insertAllCurrencyRates(networkResult.rates.map {
             CurrencyRateEntity(
                 id = it.key,
-                rateInUsd = it.value
+                rateVsUsd = it.value
             )
         })
 

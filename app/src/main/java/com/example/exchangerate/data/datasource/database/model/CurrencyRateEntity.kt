@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 data class CurrencyRateEntity(
     @PrimaryKey
     val id: String,
-    @ColumnInfo(name = "rate_in_usd")
-    val rateInUsd: Double
+    @ColumnInfo(name = "rate_vs_usd")
+    val rateVsUsd: Double
 )

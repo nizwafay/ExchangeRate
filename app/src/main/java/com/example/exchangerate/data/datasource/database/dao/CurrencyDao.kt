@@ -20,7 +20,7 @@ interface CurrencyDao {
     @Query(
         "SELECT currency_names_table.id AS id, " +
                 "currency_names_table.name AS name, " +
-                "currency_rates_table.rate_in_usd AS rateInUsd " +
+                "currency_rates_table.rate_vs_usd AS rateVsUsd " +
                 "FROM currency_names_table, currency_rates_table " +
                 "WHERE currency_names_table.id = currency_rates_table.id"
     )
