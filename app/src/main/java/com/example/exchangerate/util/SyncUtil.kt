@@ -6,6 +6,6 @@ object SyncUtil {
 
     fun isCurrencyDataAvailableToSync(lastSync: Long?): Boolean {
         return if (lastSync == null) true
-        else lastSync - DateUtil.getCurrentTimestamp() >= MIN_INTERVAL_TO_SYNC_CURRENCY_DATA
+        else DateUtil.getCurrentTimestamp() - lastSync >= MIN_INTERVAL_TO_SYNC_CURRENCY_DATA
     }
 }
