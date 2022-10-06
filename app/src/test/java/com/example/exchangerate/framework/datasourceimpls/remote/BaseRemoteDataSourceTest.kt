@@ -1,9 +1,8 @@
 package com.example.exchangerate.framework.datasourceimpls.remote
 
+import com.example.exchangerate.TestUtil
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import okio.buffer
-import okio.source
 import org.junit.After
 import org.junit.Before
 import retrofit2.Retrofit
@@ -23,11 +22,9 @@ abstract class BaseRemoteDataSourceTest {
     }
 
     internal fun enqueueMockResponse(fileName: String) {
-        javaClass.classLoader?.let {
-            val inputStream = it.getResourceAsStream(fileName)
-            val source = inputStream.source().buffer()
+        TestUtil.readFile(fileName)?.let {
             val mockResponse = MockResponse()
-            mockResponse.setBody(source.readString(Charsets.UTF_8))
+            mockResponse.setBody(it)
             server.enqueue(mockResponse)
         }
     }
