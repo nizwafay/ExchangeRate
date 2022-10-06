@@ -1,4 +1,4 @@
-package com.example.exchangerate.data.datasourceimpls.database.model
+package com.example.exchangerate.framework.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,7 +1,7 @@
 package com.example.exchangerate.di
 
-import com.example.exchangerate.data.datasourceimpls.database.dao.CurrencyDao
-import com.example.exchangerate.data.datasourceimpls.network.retrofit.CurrencyRetrofit
+import com.example.exchangerate.framework.database.dao.CurrencyDao
+import com.example.exchangerate.framework.network.retrofit.CurrencyRetrofit
 import com.example.exchangerate.data.repository.CurrencyRepository
 import dagger.Module
 import dagger.Provides

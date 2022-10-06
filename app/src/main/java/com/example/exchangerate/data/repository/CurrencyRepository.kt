@@ -1,11 +1,11 @@
 package com.example.exchangerate.data.repository
 
 import android.util.Log
-import com.example.exchangerate.data.datasourceimpls.cache.CurrencyCache
-import com.example.exchangerate.data.datasourceimpls.database.dao.CurrencyDao
-import com.example.exchangerate.data.datasourceimpls.database.model.CurrencyNameEntity
-import com.example.exchangerate.data.datasourceimpls.database.model.CurrencyRateEntity
-import com.example.exchangerate.data.datasourceimpls.network.retrofit.CurrencyRetrofit
+import com.example.exchangerate.framework.cache.CurrencyCache
+import com.example.exchangerate.framework.database.dao.CurrencyDao
+import com.example.exchangerate.framework.database.model.CurrencyNameEntity
+import com.example.exchangerate.framework.database.model.CurrencyRateEntity
+import com.example.exchangerate.framework.network.retrofit.CurrencyRetrofit
 import com.example.exchangerate.model.Currency
 import com.example.exchangerate.util.SyncUtil
 import kotlinx.coroutines.flow.Flow

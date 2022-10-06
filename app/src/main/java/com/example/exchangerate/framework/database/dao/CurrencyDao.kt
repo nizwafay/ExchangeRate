@@ -1,11 +1,11 @@
-package com.example.exchangerate.data.datasourceimpls.database.dao
+package com.example.exchangerate.framework.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.exchangerate.data.datasourceimpls.database.model.CurrencyNameEntity
-import com.example.exchangerate.data.datasourceimpls.database.model.CurrencyRateEntity
+import com.example.exchangerate.framework.database.model.CurrencyNameEntity
+import com.example.exchangerate.framework.database.model.CurrencyRateEntity
 import com.example.exchangerate.model.Currency
 import kotlinx.coroutines.flow.Flow
 

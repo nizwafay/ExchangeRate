@@ -1,12 +1,12 @@
-package com.example.exchangerate.data.datasourceimpls.database
+package com.example.exchangerate.framework.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.exchangerate.data.datasourceimpls.database.dao.CurrencyDao
-import com.example.exchangerate.data.datasourceimpls.database.model.CurrencyNameEntity
-import com.example.exchangerate.data.datasourceimpls.database.model.CurrencyRateEntity
+import com.example.exchangerate.framework.database.dao.CurrencyDao
+import com.example.exchangerate.framework.database.model.CurrencyNameEntity
+import com.example.exchangerate.framework.database.model.CurrencyRateEntity
 
 @Database(
     entities = [CurrencyNameEntity::class, CurrencyRateEntity::class],

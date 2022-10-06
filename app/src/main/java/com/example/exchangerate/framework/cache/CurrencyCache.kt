@@ -1,4 +1,4 @@
-package com.example.exchangerate.data.datasourceimpls.cache
+package com.example.exchangerate.framework.cache
 
 import com.chibatching.kotpref.KotprefModel
 
