@@ -11,32 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:inputType="number"
         android:hint="@string/hint_amount"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/dropdown"
         android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:completionThreshold="1"
         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:inputType="textCapCharacters"
         android:maxLength="3"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/etAmount"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAmount" />
 
     <ScrollView
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/dropdown"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dropdown">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvExchangeRates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/etAmount"/>
+            app:layout_constraintTop_toBottomOf="@id/etAmount" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

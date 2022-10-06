@@ -12,23 +12,23 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CurrencyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllCurrenciesName(currenciesName: List<CurrencyNameEntity>)
+    suspend fun insertAllCurrencyNames(currencyNames: List<CurrencyNameEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllCurrenciesRate(currenciesRate: List<CurrencyRateEntity>)
+    suspend fun insertAllCurrencyRates(currencyRates: List<CurrencyRateEntity>)
 
     @Query(
-        "SELECT currencies_name_table.id AS id, " +
-                "currencies_name_table.name AS name, " +
-                "currencies_rate_table.rate_in_usd AS rateInUsd " +
-                "FROM currencies_name_table, currencies_rate_table " +
-                "WHERE currencies_name_table.id = currencies_rate_table.id"
+        "SELECT currency_names_table.id AS id, " +
+                "currency_names_table.name AS name, " +
+                "currency_rates_table.rate_in_usd AS rateInUsd " +
+                "FROM currency_names_table, currency_rates_table " +
+                "WHERE currency_names_table.id = currency_rates_table.id"
     )
     fun getAllCurrencies(): Flow<List<Currency>>
 
-    @Query("DELETE FROM currencies_name_table")
-    suspend fun deleteCurrenciesNameTable()
+    @Query("DELETE FROM currency_names_table")
+    suspend fun deleteCurrencyNamesTable()
 
-    @Query("DELETE FROM currencies_rate_table")
-    suspend fun deleteCurrenciesRateTable()
+    @Query("DELETE FROM currency_rates_table")
+    suspend fun deleteCurrencyRatesTable()
 }

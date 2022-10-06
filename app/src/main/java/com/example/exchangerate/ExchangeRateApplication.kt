@@ -5,7 +5,7 @@ import com.chibatching.kotpref.Kotpref
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class ExchangeRateApplication: Application() {
+class ExchangeRateApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 

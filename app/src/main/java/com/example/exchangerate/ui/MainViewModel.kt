@@ -1,12 +1,8 @@
 package com.example.exchangerate.ui
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.exchangerate.data.repository.ExchangeRateRepository
+import com.example.exchangerate.data.repository.CurrencyRepository
 import com.example.exchangerate.model.Currency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -14,16 +10,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.single
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val exchangeRateRepository: ExchangeRateRepository
+    private val currencyRepository: CurrencyRepository
 ) : ViewModel() {
     private val _amount = MutableStateFlow<Float?>(null)
     val amount: StateFlow<Float?>
@@ -33,7 +26,7 @@ class MainViewModel @Inject constructor(
     val baseCurrency: StateFlow<Currency?>
         get() = _baseCurrency
 
-    val currencyList: Flow<List<Currency>> = exchangeRateRepository.getExchangeRates()
+    val currencyList: Flow<List<Currency>> = currencyRepository.getExchangeRates()
 
     val currencyExchangeResult: Flow<List<Currency>> = combine(amount, baseCurrency, currencyList) { a, b, c ->
         c.map {
@@ -65,7 +58,7 @@ class MainViewModel @Inject constructor(
 
     fun syncData() {
         viewModelScope.launch {
-            exchangeRateRepository.syncData()
+            currencyRepository.syncData()
         }
     }
 

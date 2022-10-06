@@ -2,7 +2,7 @@ package com.example.exchangerate.data.datasource.network
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.example.exchangerate.util.Constants.Companion.BASE_URL
+import com.example.exchangerate.util.ApiConstants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
