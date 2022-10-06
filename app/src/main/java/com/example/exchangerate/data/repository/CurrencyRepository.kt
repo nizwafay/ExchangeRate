@@ -16,10 +16,9 @@ class CurrencyRepository @Inject constructor(
 ) {
     suspend fun syncCurrencyData() {
         if (SyncUtil.isCurrencyDataAvailableToSync(CurrencyCache.lastSyncTimeStamp?.toLong())) {
-            return
+            syncCurrencyNamesData()
+            syncCurrencyRatesData()
         }
-        syncCurrencyNamesData()
-        syncCurrencyRatesData()
     }
 
     fun getCurrencyData(): Flow<List<Currency>> {
