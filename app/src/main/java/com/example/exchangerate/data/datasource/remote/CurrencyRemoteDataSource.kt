@@ -5,5 +5,5 @@ import com.example.exchangerate.model.CurrencyRate
 interface CurrencyRemoteDataSource {
     suspend fun getCurrencyNames(): Map<String, String>
 
-    suspend fun getCurrencyRates(): CurrencyRate
+    suspend fun getCurrencyRates(): CurrencyRate?
 }

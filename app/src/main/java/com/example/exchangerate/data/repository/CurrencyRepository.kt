@@ -1,6 +1,5 @@
 package com.example.exchangerate.data.repository
 
-import android.util.Log
 import com.example.exchangerate.data.datasource.remote.CurrencyRemoteDataSource
 import com.example.exchangerate.framework.cache.CurrencyCache
 import com.example.exchangerate.framework.database.dao.CurrencyDao
@@ -33,36 +32,28 @@ class CurrencyRepository @Inject constructor(
     }
 
     private suspend fun syncCurrencyNamesData() {
-        try {
-            val networkResult = currencyRemoteDataSource.getCurrencyNames()
+        val networkResult = currencyRemoteDataSource.getCurrencyNames()
 
-            currencyDao.deleteCurrencyNamesTable()
+        currencyDao.deleteCurrencyNamesTable()
 
-            currencyDao.insertAllCurrencyNames(networkResult.map {
-                CurrencyNameEntity(
-                    id = it.key, name = it.value
-                )
-            })
-        } catch (e: Exception) {
-            Log.e(null, e.message, e.cause)
-        }
+        currencyDao.insertAllCurrencyNames(networkResult.map {
+            CurrencyNameEntity(
+                id = it.key, name = it.value
+            )
+        })
     }
 
     private suspend fun syncCurrencyRatesData() {
-        try {
-            val networkResult = currencyRemoteDataSource.getCurrencyRates()
+        val networkResult = currencyRemoteDataSource.getCurrencyRates() ?: return
 
-            currencyDao.deleteCurrencyRatesTable()
+        currencyDao.deleteCurrencyRatesTable()
 
-            currencyDao.insertAllCurrencyRates(networkResult.rates.map {
-                CurrencyRateEntity(
-                    id = it.key, rateVsUsd = it.value
-                )
-            })
+        currencyDao.insertAllCurrencyRates(networkResult.rates.map {
+            CurrencyRateEntity(
+                id = it.key, rateVsUsd = it.value
+            )
+        })
 
-            CurrencyCache.updateLastSyncTimeStamp(networkResult.updatedAt)
-        } catch (e: Exception) {
-            Log.e(null, e.message, e.cause)
-        }
+        CurrencyCache.updateLastSyncTimeStamp(networkResult.updatedAt)
     }
 }

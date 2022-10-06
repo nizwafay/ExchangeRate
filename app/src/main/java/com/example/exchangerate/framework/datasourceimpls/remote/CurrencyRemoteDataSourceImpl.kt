@@ -11,7 +11,7 @@ class CurrencyRemoteDataSourceImpl(private val currencyApi: CurrencyApi) :
         return currencyApi.getCurrencyNames()
     }
 
-    override suspend fun getCurrencyRates(): CurrencyRate {
-        return currencyApi.getCurrencyRates().asCurrencyRateDomainModel()
+    override suspend fun getCurrencyRates(): CurrencyRate? {
+        return currencyApi.getCurrencyRates().body()?.asCurrencyRateDomainModel()
     }
 }
