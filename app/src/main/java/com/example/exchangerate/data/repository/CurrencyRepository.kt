@@ -8,17 +8,23 @@ import com.example.exchangerate.framework.database.model.CurrencyNameEntity
 import com.example.exchangerate.framework.database.model.CurrencyRateEntity
 import com.example.exchangerate.model.Currency
 import com.example.exchangerate.util.SyncUtil
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CurrencyRepository @Inject constructor(
     private val currencyRemoteDataSource: CurrencyRemoteDataSource,
-    private val currencyDao: CurrencyDao
+    private val currencyDao: CurrencyDao,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
     suspend fun syncCurrencyData() {
-        if (SyncUtil.isCurrencyDataAvailableToSync(CurrencyCache.lastSyncTimeStamp?.toLong())) {
-            syncCurrencyNamesData()
-            syncCurrencyRatesData()
+        withContext(ioDispatcher) {
+            if (SyncUtil.isCurrencyDataAvailableToSync(CurrencyCache.lastSyncTimeStamp?.toLong())) {
+                syncCurrencyNamesData()
+                syncCurrencyRatesData()
+            }
         }
     }
 
