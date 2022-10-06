@@ -2,7 +2,7 @@ package com.example.exchangerate.di
 
 import android.content.Context
 import com.example.exchangerate.framework.network.RetrofitInstance
-import com.example.exchangerate.framework.network.retrofit.CurrencyRetrofit
+import com.example.exchangerate.framework.network.api.CurrencyApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
+object ApiModule {
     @Singleton
     @Provides
     fun provideRetrofitInstance(@ApplicationContext context: Context): Retrofit {
@@ -22,7 +22,7 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideCurrencyRetrofit(retrofitInstance: Retrofit): CurrencyRetrofit {
-        return retrofitInstance.create(CurrencyRetrofit::class.java)
+    fun provideCurrencyApi(retrofitInstance: Retrofit): CurrencyApi {
+        return retrofitInstance.create(CurrencyApi::class.java)
     }
 }

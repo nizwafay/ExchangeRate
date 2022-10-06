@@ -1,4 +1,4 @@
-package com.example.exchangerate.data.datasourceimpls.network.model
+package com.example.exchangerate.framework.network.model
 
 import com.google.gson.annotations.SerializedName
 
