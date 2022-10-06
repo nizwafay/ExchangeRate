@@ -1,10 +1,10 @@
 package com.example.exchangerate.data.repository
 
-import com.example.exchangerate.data.datasource.cache.CurrencyCache
-import com.example.exchangerate.data.datasource.database.dao.CurrencyDao
-import com.example.exchangerate.data.datasource.database.model.CurrencyNameEntity
-import com.example.exchangerate.data.datasource.database.model.CurrencyRateEntity
-import com.example.exchangerate.data.datasource.network.retrofit.CurrencyRetrofit
+import com.example.exchangerate.data.datasourceimpls.cache.CurrencyCache
+import com.example.exchangerate.data.datasourceimpls.database.dao.CurrencyDao
+import com.example.exchangerate.data.datasourceimpls.database.model.CurrencyNameEntity
+import com.example.exchangerate.data.datasourceimpls.database.model.CurrencyRateEntity
+import com.example.exchangerate.data.datasourceimpls.network.retrofit.CurrencyRetrofit
 import com.example.exchangerate.model.Currency
 import com.example.exchangerate.util.SyncUtil
 import kotlinx.coroutines.flow.Flow

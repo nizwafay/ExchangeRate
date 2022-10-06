@@ -1,4 +1,4 @@
-package com.example.exchangerate.data.datasource.network
+package com.example.exchangerate.data.datasourceimpls.network
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor

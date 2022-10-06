@@ -1,8 +1,8 @@
 package com.example.exchangerate.di
 
 import android.content.Context
-import com.example.exchangerate.data.datasource.database.CurrencyDatabase
-import com.example.exchangerate.data.datasource.database.dao.CurrencyDao
+import com.example.exchangerate.data.datasourceimpls.database.CurrencyDatabase
+import com.example.exchangerate.data.datasourceimpls.database.dao.CurrencyDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,6 +1,6 @@
-package com.example.exchangerate.data.datasource.network.retrofit
+package com.example.exchangerate.data.datasourceimpls.network.retrofit
 
-import com.example.exchangerate.data.datasource.network.model.CurrencyRatesResponse
+import com.example.exchangerate.data.datasourceimpls.network.model.CurrencyRatesResponse
 import com.example.exchangerate.util.ApiConstants.Companion.APP_ID
 import retrofit2.http.GET
 import retrofit2.http.Query

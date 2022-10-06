@@ -1,8 +1,8 @@
 package com.example.exchangerate.di
 
 import android.content.Context
-import com.example.exchangerate.data.datasource.network.RetrofitInstance
-import com.example.exchangerate.data.datasource.network.retrofit.CurrencyRetrofit
+import com.example.exchangerate.data.datasourceimpls.network.RetrofitInstance
+import com.example.exchangerate.data.datasourceimpls.network.retrofit.CurrencyRetrofit
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
