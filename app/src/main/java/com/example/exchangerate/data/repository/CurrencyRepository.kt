@@ -14,7 +14,7 @@ class CurrencyRepository @Inject constructor(
     private val currencyRetrofit: CurrencyRetrofit,
     private val currencyDao: CurrencyDao
 ) {
-    suspend fun syncData() {
+    suspend fun syncCurrencyData() {
         if (SyncUtil.isCurrencyDataAvailableToSync(CurrencyCache.lastSyncTimeStamp?.toLong())) {
             return
         }
@@ -22,7 +22,7 @@ class CurrencyRepository @Inject constructor(
         syncCurrencyRatesData()
     }
 
-    fun getExchangeRates(): Flow<List<Currency>> {
+    fun getCurrencyData(): Flow<List<Currency>> {
         return currencyDao.getAllCurrencies()
     }
 
@@ -50,5 +50,7 @@ class CurrencyRepository @Inject constructor(
                 rateInUsd = it.value
             )
         })
+
+        CurrencyCache.updateLastSyncTimeStamp(networkResult.timestamp)
     }
 }

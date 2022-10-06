@@ -4,10 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.exchangerate.data.repository.CurrencyRepository
 import com.example.exchangerate.model.Currency
+import com.example.exchangerate.ui.adapter.CurrencyExchangeResult
+import com.example.exchangerate.util.CurrencyUtil.rateIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
@@ -18,37 +19,35 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val currencyRepository: CurrencyRepository
 ) : ViewModel() {
-    private val _amount = MutableStateFlow<Float?>(null)
-    val amount: StateFlow<Float?>
-        get() = _amount
+    private val amount = MutableStateFlow<Float?>(null)
+    private val baseCurrency = MutableStateFlow<Currency?>(null)
 
-    private val _baseCurrency = MutableStateFlow<Currency?>(null)
-    val baseCurrency: StateFlow<Currency?>
-        get() = _baseCurrency
+    val currencyList: Flow<List<Currency>> = currencyRepository.getCurrencyData()
 
-    val currencyList: Flow<List<Currency>> = currencyRepository.getExchangeRates()
-
-    val currencyExchangeResult: Flow<List<Currency>> = combine(amount, baseCurrency, currencyList) { a, b, c ->
-        c.map {
-            Currency(
-                id = it.id,
-                name = it.name,
-                rateInUsd = if (a == null || b == null) 0.0 else a * (it.rateInUsd / b.rateInUsd)
-            )
+    val currencyExchangeResult: Flow<List<CurrencyExchangeResult>> =
+        combine(amount, baseCurrency, currencyList) { _amount, _baseCurrency, _currencyList ->
+            _currencyList.map {
+                it.rateIn(_baseCurrency)
+            }.map {
+                CurrencyExchangeResult(
+                    id = it.id,
+                    name = it.name,
+                    exchangeResult = _amount?.times(it.exchangeResult) ?: 0.0
+                )
+            }
         }
-    }
 
     init {
         syncData()
     }
 
     fun onAmountChanged(amount: Float?) {
-        _amount.update { amount }
+        this.amount.update { amount }
     }
 
     fun onBaseCurrencyChanged(currencyString: String) {
         viewModelScope.launch {
-            _baseCurrency.update {
+            baseCurrency.update {
                 currencyList.first().firstOrNull {
                     it.id == currencyString
                 }
@@ -56,15 +55,9 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun syncData() {
+    private fun syncData() {
         viewModelScope.launch {
-            currencyRepository.syncData()
+            currencyRepository.syncCurrencyData()
         }
     }
-
-//    fun getDbData() {
-//        viewModelScope.launch {
-//            exchangeRateRepository.getExchangeRates()
-//        }
-//    }
 }

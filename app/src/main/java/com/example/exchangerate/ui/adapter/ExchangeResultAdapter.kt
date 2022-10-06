@@ -6,21 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.exchangerate.databinding.ItemExchangeRateBinding
-import com.example.exchangerate.model.Currency
 
-class ExchangeResultAdapter : ListAdapter<Currency, ExchangeResultAdapter.ViewHolder>(
-    DIFF_UTIL
-) {
-
+class ExchangeResultAdapter :
+    ListAdapter<CurrencyExchangeResult, ExchangeResultAdapter.ViewHolder>(DIFF_UTIL) {
     inner class ViewHolder(private val binding: ItemExchangeRateBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(currency: Currency) {
-            with(currency) {
+        fun bind(currencyExchangeResult: CurrencyExchangeResult) {
+            with(currencyExchangeResult) {
                 binding.apply {
-//                    baseCurrency?.let {
-//                        tvExchangeResult.text = (amount * rateInUsd/it.rateInUsd).toString()
-//                    }
-                    tvExchangeResult.text = rateInUsd.toBigDecimal().toPlainString()
+                    tvExchangeResult.text = exchangeResult.toBigDecimal().toPlainString()
                     tvCurrencyId.text = id
                     tvCurrencyName.text = name
                 }
@@ -39,12 +33,18 @@ class ExchangeResultAdapter : ListAdapter<Currency, ExchangeResultAdapter.ViewHo
     }
 
     companion object {
-        val DIFF_UTIL = object : DiffUtil.ItemCallback<Currency>() {
-            override fun areItemsTheSame(oldItem: Currency, newItem: Currency): Boolean {
+        val DIFF_UTIL = object : DiffUtil.ItemCallback<CurrencyExchangeResult>() {
+            override fun areItemsTheSame(
+                oldItem: CurrencyExchangeResult,
+                newItem: CurrencyExchangeResult
+            ): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Currency, newItem: Currency): Boolean {
+            override fun areContentsTheSame(
+                oldItem: CurrencyExchangeResult,
+                newItem: CurrencyExchangeResult
+            ): Boolean {
                 return oldItem == newItem
             }
         }
