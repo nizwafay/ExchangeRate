@@ -1,8 +1,8 @@
 package com.example.exchangerate.di
 
+import com.example.exchangerate.data.datasource.remote.CurrencyRemoteDataSource
 import com.example.exchangerate.data.repository.CurrencyRepository
 import com.example.exchangerate.framework.database.dao.CurrencyDao
-import com.example.exchangerate.framework.network.api.CurrencyApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,10 +15,10 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideCurrencyRepository(
-        currencyApi: CurrencyApi, currencyDao: CurrencyDao
+        currencyRemoteDataSource: CurrencyRemoteDataSource, currencyDao: CurrencyDao
     ): CurrencyRepository {
         return CurrencyRepository(
-            currencyApi = currencyApi, currencyDao = currencyDao
+            currencyRemoteDataSource = currencyRemoteDataSource, currencyDao = currencyDao
         )
     }
 }
